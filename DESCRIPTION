@@ -1,7 +1,7 @@
 Package: odds.n.ends
 Title: Odds Ratios, Contingency Table, and Model Significance from a
         Generalized Linear Model Object
-Version: 0.1.1
+Version: 0.1.2
 Imports: MASS
 Authors@R: 
     person(given = "Jenine",
@@ -12,9 +12,10 @@ Description: Computes odds ratios and 95% confidence intervals from a generalize
 License: CC0
 Encoding: UTF-8
 LazyData: true
+RoxygenNote: 7.1.1
 NeedsCompilation: no
-Packaged: 2019-07-12 20:19:20 UTC; jenine
+Packaged: 2020-12-23 03:01:55 UTC; harrisj
 Author: Jenine Harris [aut, cre]
 Maintainer: Jenine Harris <harrisj@wustl.edu>
 Repository: CRAN
-Date/Publication: 2019-07-12 20:40:02 UTC
+Date/Publication: 2021-01-06 15:50:02 UTC
