@@ -88,8 +88,8 @@ odds.n.ends <- function(mod,
   if(rocPlot == TRUE)
   {par(mfrow = c(1,1))
     plot(spec_c, sensRoc, xlim = c(0, 1), ylim = c(0, 1), type = "l", lwd=3,
-         xlab = "False positive rate", ylab = "True positive rate", col = 'deeppink')
-    abline(0, 1, col= "#7463AC", lty=2, lwd=3)
+         xlab = "False positive rate", ylab = "True positive rate", col = color2)
+    abline(0, 1, col= color1, lty=2, lwd=3)
     legend("topleft", legend = c(paste("AUC =", round(area, 2)), "AUC = 0.50") ,
            pch = 15, bty = 'n', col = c(color2, color1))
     mytitle = "Receiver Operating Characteristic (ROC) Curve"
@@ -100,11 +100,11 @@ odds.n.ends <- function(mod,
   # plot predicted probabilities by observed y
   if(predProbPlot == TRUE)
   {par(mfrow = c(2,1))
-    casePlot <- hist(mod$fitted.values[as.numeric(mod$model$healthy) == 2],
+    casePlot <- hist(mod$fitted.values[mod$y == 1],
                      xlab = "Probability of being a case",
                      main = "Model predicted probabilities for\nobserved cases",
                      xlim = c(0,1), col = color1)
-    refPlot <- hist(mod$fitted.values[as.numeric(mod$model$healthy) == 1],
+    refPlot <- hist(mod$fitted.values[mod$y == 0],
                     xlab = "Probability of being a case",
                     main = "Model predicted probabilities for\nobserved reference group members",
                     xlim = c(0,1), col = color1)
