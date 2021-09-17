@@ -1,9 +1,9 @@
-ce2fe12c9ae2222333aa7ac8b4967cec *DESCRIPTION
+d1e104207c000204d74f25b2de74f94d *DESCRIPTION
 8983519a5849bae22d6b1d9f4ab0f876 *NAMESPACE
-f21b2e9459e88b6af03982565edd4411 *R/or_function.R
-8a31b233d4bdc07fa2ee79f6cb584d71 *build/vignette.rds
-275067287ba84e95a5c9c75032a7b783 *inst/doc/oddsnends-vignette.R
-0e8d2245f9c6dc6d80e56188f79de51a *inst/doc/oddsnends-vignette.Rmd
-d38ad418fdced9a4faafd56494450b22 *inst/doc/oddsnends-vignette.html
-0da729ff5901f89675610095442126e9 *man/odds.n.ends.Rd
-0e8d2245f9c6dc6d80e56188f79de51a *vignettes/oddsnends-vignette.Rmd
+9965a0c12228b83eb3a6e622f8eb2fd5 *R/or_function.R
+84ce070653c64aced83acfffc9d414c7 *build/vignette.rds
+8d68b3e8b0810427f1597d948fbd5d4e *inst/doc/oddsnends-vignette.R
+c405804e9d7f4d009bac992893852688 *inst/doc/oddsnends-vignette.Rmd
+c05f7730bd655823827370c6e272a371 *inst/doc/oddsnends-vignette.html
+db812be975c48c24357a636348b11fa7 *man/odds.n.ends.Rd
+c405804e9d7f4d009bac992893852688 *vignettes/oddsnends-vignette.Rmd

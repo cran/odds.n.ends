@@ -9,6 +9,11 @@ vignette: >
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
+```
+
+```{r out.width="150px", echo = FALSE}
+knitr::include_graphics("https://github.com/jenineharris/stuff/blob/master/stickerdraft.png?raw=true")
 ```
 
 ## Creating a small data set for demonstration
@@ -21,21 +26,14 @@ The small demonstration data set includes three variables. The first is a binary
 # enter demo data
 sick <- c(0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1,
           0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 1, 1, 0, 0)
-age <- c(23, 25, 26, 34, 54, 46, 48, 95, 81, 42, 
-         62, 25, 31, 49, 57, 52, 54, 63, 61, 50,
-         43, 35, 26, 74, 34, 46, 43, 65, 81, 42, 
-         62, 25, 21, 47, 51, 22, 34, 59, 26, 55)
-smoke <- c('Former', 'Former', 'Former', 'Never', 'Current', 'Current', 'Current', 'Current',
-           'Never', 'Former', 'Never', 'Former', 'Current', 'Former', 'Never', 'Current',
-           'Current', 'Current', 'Former', 'Never','Former', 'Former', 'Former', 'Never',
-           'Current', 'Current', 'Current', 'Current', 'Never', 'Former', 'Never', 'Former',
-           'Current', 'Former', 'Never', 'Current', 'Current', 'Current', 'Former', 'Never')
+age <- c(23, 25, 26, 34, 54, 46, 48, 95, 81, 42, 62, 25, 31, 49, 57, 52, 54, 63, 61, 50,
+         43, 35, 26, 74, 34, 46, 43, 65, 81, 42, 62, 25, 21, 47, 51, 22, 34, 59, 26, 55)
+smoke <- c('Former', 'Former', 'Former', 'Never', 'Current', 'Current', 'Current', 'Current', 'Never', 'Former', 'Never', 'Former', 'Current', 'Former', 'Never', 'Current', 'Current', 'Current', 'Former', 'Never','Former', 'Former', 'Former', 'Never', 'Current', 'Current', 'Current', 'Current', 'Never', 'Former', 'Never', 'Former', 'Current', 'Former', 'Never', 'Current', 'Current', 'Current', 'Former', 'Never')
 
 # create data frame
 smokeData <- data.frame(sick, age, smoke)
 ```
 
-If your outcome variable is not coded as 1 and 0, you may want to check the variable level order before estimating your model so that you know which group will be modeled as the cases (the 1 values in the example data) and which group will be the reference group (the 0 values in our example data). 
 
 ## Estimating the model
 
@@ -43,10 +41,7 @@ The `glm()` function will be used to estimate a binary logistic regression model
 
 ```{r}
 # estimate the logistic regression model object
-logisticModel <- glm(formula = sick ~ age + smoke, 
-                     data = smokeData, 
-                     na.action = na.exclude, 
-                     family = binomial(logit))
+logisticModel <- glm(formula = sick ~ age + smoke, data = smokeData, na.action = na.exclude, family = binomial(logit))
 
 # print model summary for the logistic model object
 summary(object = logisticModel)
@@ -66,16 +61,4 @@ odds.n.ends(mod = logisticModel)
 
 The results show that the model was statistically significantly better than a baseline model at explaining the outcome [$\chi^2$(3) = 16.652; p = .001]. The model correctly predicted 19 of those who were sick (`sick = 1`) and 13 of those who were not sick (`sick = 0`), for a total of 32 correctly predicted out of 40 (Count-$R^2$ = .80 or 80% correctly predicted). The model was more sensitive, with 82.6% of those who were sick (the cases) correctly predicted, and less specific, with 76.5% of the members of the reference group correctly predicted. Age was a statistically significant predictor of the outcome; for every one year increase in age, the odds of being sick increased by 11% (OR = 1.11; 95% CI: 1.04 - 1.21). There was no statistically significant difference in odds of being sick for former smokers compared to current smokers. Never smokers had 92% lower odds of being sick compared to current smokers; this decrease was statistically significant (OR = .08; 95% CI: .005 - .82). 
 
-The `odds.n.ends` package has several additional options including the ability to get an ROC curve (use option `rocPlot = TRUE`) and histograms of predicted probabilities (use option `predProbPlot = TRUE`). Colors for these plots can be set with options `color1 = ` and `color2 = `. Finally, the threshold for a predicted probability being counted as a case (outcome = 1) has a default value of .5, so any predicted probability that is .5 or higher will be counted as a case, and any predicted probability below .5 will be counted as a reference group member (outcome = 0). This threshold can be adjusted using the `thresh = ` argument.
-
-Example with other arguments specified:
-
-```{r, eval = FALSE}
-# add graphs, change threshold, specify color
-odds.n.ends(mod = logisticModel,
-            rocPlot = TRUE,
-            predProbPlot = TRUE,
-            thresh = .4,
-            color1 = 'orange',
-            color2 = 'blue')
-```
+The `odds.n.ends` package has several additional options including the ability to get an ROC curve (use option `rocPlot = TRUE`) and histograms of predicted probabilities (use option `predProbPlot = TRUE`). Colors for these plots can be set with options `color1 = ` and `color2 = `. Finally, the threshold for a predicted probability being counted as a case (outcome = 1) has a default value of .5, so any predicted probability that is .5 or higher will be counted as a case, and any predicted probability below .5 will be counted as a reference group member (outcome = 0). This threshold can be adjusted using the `thresh = ` argument. 

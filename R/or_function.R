@@ -51,12 +51,12 @@ odds.n.ends <- function(mod,
   # model fit contingency tables
   # error if na.action = na.exclude not used
   # observed and predicted values frequencies
-  freqTable <- addmargins(table("Number predicted" = as.numeric(mod$fitted.values>=thresh),
-                                "Number observed" = mod$y)[2:1, 2:1])
+  freqTable <- addmargins(table("Number predicted" = factor(as.numeric(mod$fitted.values>=thresh), levels = 0:1),
+                                "Number observed" = mod$y))
 
   # sensitivity and specificity
-  sens <- freqTable[1,1]/(freqTable[1,1] + freqTable[2,1])
-  spec <- freqTable[2,2]/(freqTable[2,2] + freqTable[1,2])
+  spec <- freqTable[1,1]/(freqTable[1,1] + freqTable[2,1])
+  sens <- freqTable[2,2]/(freqTable[2,2] + freqTable[1,2])
 
   # count-R-squared
   countrsquared <- 100*(freqTable[1,1] + freqTable[2,2])/(freqTable[1,1] + freqTable[2,1] +
@@ -112,7 +112,7 @@ odds.n.ends <- function(mod,
     refPlot}
 
   # consolidate
-  resultList <- list(modelsig, freqTable, countrsquared, sens, spec, oddsRatios)
+  resultList <- list(modelsig, freqTable[c(2,1,3), c(2,1,3)], countrsquared, sens, spec, oddsRatios)
   names(resultList) <- c("Logistic regression model significance",
                          "Contingency tables (model fit): frequency predicted",
                          "Count R-squared (model fit): percent correctly predicted",
